@@ -64,7 +64,7 @@ VALUES
   ('Animals')
 ;
 
-INSERT INTO heroes (name, bio, img, sex_id) 
+INSERT INTO heroes (name, bio, photo, sex_id) 
 VALUES
   ('Superman', NULL, NULL, 1),
   ('Catwoman', NULL, NULL, 2),
@@ -136,4 +136,8 @@ SELECT * FROM heroes;
 SELECT * FROM hero_interests;
 
 SELECT * FROM interests;
-DELETE FROM interests WHERE id = 5; */
+DELETE FROM interests WHERE id = 5; 
+
+ALTER TABLE heroes 
+RENAME COLUMN img TO photo;
+*/

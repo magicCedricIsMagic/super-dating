@@ -14,11 +14,20 @@
 		<div class="spacer vertical sm"></div>
 		<h2 class="h2">Amaze us!</h2>
 		<div class="spacer vertical"></div>
+
 		<form class="form" method="POST" action="/create-profile">
+
 			<label class="form-field">
 				<span class="form-field__label">Name</span>
 				<input name="name" required class="form-field__input" value="<%= hero?.name %>" />
 			</label>
+
+			<label class="form-field">
+				<span class="form-field__label">Picture url</span>
+				<input name="photo" class="form-field__input" value="<%= hero?.photo %>" />
+			</label>
+
+
 			<label class="form-field">
 				<span class="form-field__label">Sex</span>
 				<select name="sex" required class="form-field__input">
@@ -29,6 +38,7 @@
 					<% } %>
 				</select>
 			</label>
+
 			<label class="form-field">
 				<span class="form-field__label">Bio</span>
 				<textarea
@@ -38,7 +48,9 @@
 					rows="5"
 				><%= hero?.bio %></textarea>
 			</label>
+
 			<input class="button" type="submit" value="Send" />
+
 		</form>
 	</main>
 </body>

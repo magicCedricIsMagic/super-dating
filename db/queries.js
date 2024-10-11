@@ -27,9 +27,9 @@ async function getRandomHeroes(quantity) {
 
 async function addHero(hero) {
 	await pool.query(`
-    INSERT INTO heroes (name, bio, sex_id)
-    VALUES ($1, $2, $3)
-  `, [hero.name, hero.bio, hero.sex])
+    INSERT INTO heroes (name, bio, photo, sex_id)
+    VALUES ($1, $2, $3, $4)
+  `, [hero.name, hero.bio, hero.photo, hero.sex])
 }
 
 /* async function updateHero(hero) {

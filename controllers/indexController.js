@@ -74,8 +74,9 @@ const addNewProfile = [
 				// const postId = parseInt(req.params.id)
 				const hero = {
 					name: sanitize(req.body.name),
-					bio: sanitize(req.body.bio),
+					photo: sanitize(req.body.photo),
 					sex: sanitize(req.body.sex),
+					bio: sanitize(req.body.bio),
 				}
 				/* if (postId) {
 					message.id = postId

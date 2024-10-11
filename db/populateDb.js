@@ -70,7 +70,7 @@ VALUES
   ('Animals')
 ;
 
-INSERT INTO heroes (name, bio, img, sex_id) 
+INSERT INTO heroes (name, bio, photo, sex_id) 
 VALUES
   ('Superman', 'I''ll make you fly!', NULL, 1),
   ('Catwoman', NULL, NULL, 2),

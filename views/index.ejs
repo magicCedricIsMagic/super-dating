@@ -3,7 +3,7 @@
 
 	<head>
 		<%- include("includes/headContent") %>
-		<!-- <link rel="stylesheet" href="/styles/index.css"> -->
+		<link rel="stylesheet" href="/styles/home/hero-card.css">
 	</head>
 
 	<body>
@@ -16,14 +16,20 @@
 			<div class="spacer vertical"></div>
 			<section class="grid sm heroes-list">
 				<% for (const hero of heroes) { %>
-					<article class="card hero">
-						<header class="card__header">
-							<h2 class="h4"><%= hero.name %></h2>
-							<% if (hero.bio) { %>
-								<div class="spacer vertical xs"></div>
-								<p><%= hero.bio %></p>
+					<article class="card hero-card">
+						<div class="hero-card__photo">
+							<% if (hero.photo) { %>
+								<img src="<%= hero.photo %>" alt="<%= hero.name %>">
+							<% } else { %>
+								<i class="fas fa-mask"></i>
 							<% } %>
-						</header>
+						</div>
+						<div class="spacer vertical sm"></div>
+						<h2 class="h4"><%= hero.name %></h2>
+						<% if (hero.bio) { %>
+							<div class="spacer vertical xs"></div>
+							<p><%= hero.bio %></p>
+						<% } %>
 					</article>
 				<% } %>
 			</div>

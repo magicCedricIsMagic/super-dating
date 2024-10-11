@@ -13,36 +13,49 @@ const routes = [
 		title: "Super Dating",
 		linkTitle: "Home",
 	},
-	/* {
-		url: "/coucou",
-		file: "coucou",
-		title: "Coucou",
+	{
+		url: "/create-profile",
+		file: "create-profile",
+		title: "Create my profile",
 	},
 	{
-		url: "/odin",
-		title: "Odin",
-	}, */
+		url: "/admin",
+		file: "admin",
+		title: "Admin",
+	},
 ]
 
+/* for (const route of routes) {
+	indexRouter.get(route.url, (req, res, next) => {
+		indexController.getView(req, res, next, { routes, route })
+	})
+} */
+
 indexRouter.get("/", (req, res, next) => {
-	indexController.getView(req, res, next, { routes, route: routes[0] })
+	indexController.getHomeView(req, res, next, { routes, route: routes[0] })
 })
 
-/* indexRouter.get("/coucou", (req, res, next) => {
-	indexController.getView(req, res, next, { routes, route: routes[1] })
+indexRouter.get("/create-profile", (req, res, next) => {
+	indexController.getNewProfileView(req, res, next, { routes, route: routes[1] })
+})
+indexRouter.post("/create-profile", indexController.addNewProfile)
+
+indexRouter.get("/admin", (req, res, next) => {
+	indexController.getView(req, res, next, { routes, route: routes[2] })
 })
 
-indexRouter.get("/odin", (req, res) => {
-  res.redirect("https://www.theodinproject.com/lessons/nodejs-views#assignment")
-}) */
+indexRouter.get("/delete-hero/:id", indexController.deleteHero)
+
+// indexRouter.get("/delete-all", indexController.deleteAll)
+
 
 indexRouter.get("/*", (req, res, next) => {
 	throw new CustomError(
-		"Page non trouvée",
-		"Cette page n'existe pas."
+		"Page not found",
+		"This page doesn't exist."
 	)
 })
 
-indexRouter.use((err, req, res, next, { routes }) => indexController.getErrorView(err, req, res, next))
+indexRouter.use((err, req, res, next) => indexController.getErrorView(err, req, res, next, { routes }))
 
 module.exports = indexRouter

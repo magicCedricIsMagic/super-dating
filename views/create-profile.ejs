@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<%- include("includes/headContent") %>
+		<!-- <link rel="stylesheet" href="/styles/index.css"> -->
+</head>
+
+<body>
+	<%- include("includes/header") %>
+	<div class="spacer vertical lg"></div>
+	<main class="main">
+		<h1 class="h1"><%= title %></h1>
+		<div class="spacer vertical sm"></div>
+		<h2 class="h2">Amaze us!</h2>
+		<div class="spacer vertical"></div>
+		<form class="form" method="POST" action="/create-profile">
+			<label class="form-field">
+				<span class="form-field__label">Name</span>
+				<input name="name" required class="form-field__input" value="<%= hero?.name %>" />
+			</label>
+			<label class="form-field">
+				<span class="form-field__label">Sex</span>
+				<select name="sex" required class="form-field__input">
+					<% for (const sex of sexes) { %>
+						<option value="<%= sex.id %>">
+							<%= sex.name %>
+						</option>
+					<% } %>
+				</select>
+			</label>
+			<label class="form-field">
+				<span class="form-field__label">Bio</span>
+				<textarea
+					name="bio"
+					required
+					class="form-field__input"
+					rows="5"
+				><%= hero?.bio %></textarea>
+			</label>
+			<input class="button" type="submit" value="Send" />
+		</form>
+	</main>
+</body>
+
+</html>

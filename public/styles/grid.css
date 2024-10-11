@@ -22,4 +22,8 @@
 	&.xxl {
 		--col-min-width: var(--col-xxl);
 	}
+
+	@media (width < 600px) {
+		grid-template-columns: 1fr;
+	}
 }

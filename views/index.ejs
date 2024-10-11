@@ -1,25 +1,34 @@
-<% const message = "Est-ce que tu vas bien\u00a0?" %>
-
 <!DOCTYPE html>
 <html lang="fr">
 
 	<head>
 		<%- include("includes/headContent") %>
-		<link rel="stylesheet" href="/styles/index.css">
+		<!-- <link rel="stylesheet" href="/styles/index.css"> -->
 	</head>
 
 	<body>
-		<%- include("includes/navbar") %>
-		<div class="flex align-center gap-lg ">
-			<img class="profileTitleImage" src="./images/bear.jpg" alt="Ours">
-			<div>
-				<h1><%= title %></h1>
-				<div class="spacer vertical xs"></div>
-				<h2><%= message %></h2>
+		<%- include("includes/header") %>
+		<div class="spacer vertical lg"></div>
+
+		<main class="main full">
+			<h2 class="h2"><%= heroes.length %> random match<%= heroes.length > 1 ? "es" : "" %>:</h2>
+			
+			<div class="spacer vertical"></div>
+			<section class="grid sm heroes-list">
+				<% for (const hero of heroes) { %>
+					<article class="card hero">
+						<header class="card__header">
+							<h2 class="h4"><%= hero.name %></h2>
+							<% if (hero.bio) { %>
+								<div class="spacer vertical xs"></div>
+								<p><%= hero.bio %></p>
+							<% } %>
+						</header>
+					</article>
+				<% } %>
 			</div>
-		</div>
-		<div class="spacer vertical"></div>
-		<p>Ça cailloute&nbsp;!</p>
+		</main>
+
 	</body>
 
 </html>

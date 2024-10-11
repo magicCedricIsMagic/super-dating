@@ -1,0 +1,18 @@
+.header {
+	text-align: center;
+}
+
+.header__title,
+.header__baseline {
+	line-height: var(--line-height-sm);
+	margin: 0;
+}
+
+.header__title {
+	font-size: var(--text-xxxl);
+	color: var(--col-red);
+}
+.header__baseline {
+	font-size: var(--text-lg);
+	color: color-mix(in srgb, var(--col-red) 67%, var(--col-dark));
+}

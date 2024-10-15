@@ -47,6 +47,11 @@
 	--text-xxl: 6rem;
 	--text-xxxl: 10rem;
 
+	--text-thin: 300;
+	--text-normal: 400;
+	--text-medium: 500;
+	--text-strong: 600;
+
 	--col-xxs: 10rem;
 	--col-xs: 20rem;
 	--col-sm: 30rem;

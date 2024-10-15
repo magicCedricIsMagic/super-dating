@@ -22,9 +22,9 @@
 				</div>
 				<div class="spacer vertical sm"></div>
 				<h2 class="h1">
-					<%= hero.name %>&nbsp;
-					<% if (hero.sex_id === 1) { %><i class="h2 opacity-50 fa-solid fa-mars"></i><% } %>
-					<% if (hero.sex_id === 2) { %><i class="h2 opacity-50 fa-solid fa-venus"></i><% } %>
+					<%= hero.name %>&nbsp;<!-- 
+					--><% if (hero.sex_id === 1) { %><i class="h2 opacity-50 fa-solid fa-mars"></i><% } %><!-- 
+					--><% if (hero.sex_id === 2) { %><i class="h2 opacity-50 fa-solid fa-venus"></i><% } %>
 				</h2>
 				
 				<% if (hero.types.length) { %>
@@ -51,7 +51,7 @@
 					<div class="spacer vertical xs"></div>
 					<section class="badges">
 						<% for (const interest of hero.interests) { %>
-							<div class="badge gray">
+							<div class="badge sm gray">
 								<%= interest.name %>
 							</div>
 						<% } %>
@@ -60,14 +60,40 @@
 					
 				<div class="separator horizontal md"></div>
 				<section class="flex wrap gap-sm">
-					<a href="#" class="button sm primary">Update hero</a>
-					<a href="#" class="button sm danger">Delete hero</a>
+					<a href="/edit-hero/<%= hero.id %>" class="button sm primary">Update hero</a>
+					<button onclick="openDeleteModal()" class="button sm danger">Delete hero</button>
 				</section>
 
 			</article>
 
-
 		</main>
+
+		<dialog id="delete-modal" class="modal">
+			<h3 class="h3">Are you sure you want to delete this hero?</h3>
+			<div class="spacer vertical md"></div>
+			<p>The deletion will be permanent.</p>
+			<div class="spacer vertical lg"></div>
+			<div class="flex gap-sm justify-end align-center">
+				<button class="button gray" onclick="closeDeleteModal()">Cancel</button>
+				<form method="POST" action="/delete-hero/<%= hero.id %>">
+					<button type="submit" class="button danger" onclick="closeDeleteModal()">Delete</button>
+				</form>
+			</div>
+		</dialog>
+
+		<script>
+			const deleteModal = document.querySelector("#delete-modal")
+			function openDeleteModal() {
+				deleteModal.showModal()
+			}
+			function closeDeleteModal() {
+				deleteModal.classList.add("is-closing")
+				setTimeout(() => {
+					deleteModal.classList.remove("is-closing")
+					deleteModal.close()
+				}, 500)
+			}
+		</script>
 
 	</body>
 

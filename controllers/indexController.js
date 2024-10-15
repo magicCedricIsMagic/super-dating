@@ -21,7 +21,7 @@ function getErrorView(err, req, res, next, params) {
 
 async function getHomeView(req, res, next, params) {
 	// const heroes = await db.getAllHeroes()
-	const heroes = await db.getRandomHeroes(3)
+	const heroes = await db.getRandomHeroes(6)
 	res.render(params.route.file, {
 		title: params.route.title,
 		links: params.routes,
@@ -43,15 +43,25 @@ async function getHeroView(req, res, next, params) {
 	})
 }
 
-async function getNewProfileView(req, res, next, params) {
+async function getEditHeroView(req, res, next, params) {
+	const heroId = req.params.id
+	let hero
+	if (heroId) {
+		hero = await db.getHero(req.params.id)
+		const types = await db.getHeroTypes(req.params.id)
+		const interests = await db.getHeroInterests(req.params.id)
+		hero.types = types
+		hero.interests = interests
+	} 
+
 	const sexes = await db.getAllSexes()
 	const types = await db.getAllTypes()
 	const interests = await db.getAllInterests()
-
+	
 	res.render(params.route.file, {
 		title: params.route.title,
 		links: params.routes,
-		hero: null,
+		hero: hero,
 		sexes,
 		types,
 		interests,
@@ -68,7 +78,7 @@ const validateProfile = [
 			.isLength({ min: 1, max: 1 })
 			.withMessage(`Sex must be of 1 character`) */
 ]
-const addNewProfile = [
+const saveHero = [
 	validateProfile,
 	(req, res, next) => {
 		const errors = validationResult(req)
@@ -85,21 +95,23 @@ const addNewProfile = [
 		}
 		else {
 			(async () => {
-				// const postId = parseInt(req.params.id)
 				const hero = {
 					name: sanitize(req.body.name),
 					photo: sanitize(req.body.photo),
 					sex: sanitize(req.body.sex),
 					bio: sanitize(req.body.bio),
 				}
-				/* if (postId) {
-					message.id = postId
-					console.log("updateMessage", message)
-					await db.updateMessage(message)
+				let newHeroId
+				if (req.params.id) {
+					hero.id = parseInt(req.params.id)
+					newHeroId = await db.updateHero(hero)
 				}
-				else */
-				const newHero = await db.addHero(hero)
-				res.redirect("/")
+				else {
+					newHeroId = await db.addHero(hero)
+				}
+				console.log("newHeroId", newHeroId)
+				// res.redirect(`/`)
+				res.redirect(`/hero/${newHeroId}`)
 			})()
 		}
 	}
@@ -120,8 +132,8 @@ module.exports = {
 	getErrorView,
 	getHomeView,
 	getHeroView,
-	getNewProfileView,
-	addNewProfile,
+	getEditHeroView,
+	saveHero,
 	deleteHero,
 	deleteAll,
 }

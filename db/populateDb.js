@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS heroes (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   name VARCHAR (100) NOT NULL,
   bio TEXT,
-	img TEXT,
+	photo TEXT,
 	sex_id INTEGER,
 	CONSTRAINT FK_Hero_Sex FOREIGN KEY(sex_id) REFERENCES sexes(id) ON DELETE CASCADE
 );
@@ -57,7 +57,8 @@ VALUES
   ('Super human'),
   ('Mutant'),
   ('Robot'),
-  ('God')
+  ('God'),
+  ('Monster')
 ;
 
 INSERT INTO interests (name) 
@@ -72,10 +73,12 @@ VALUES
 
 INSERT INTO heroes (name, bio, photo, sex_id) 
 VALUES
-  ('Superman', 'I''ll make you fly!', NULL, 1),
-  ('Catwoman', NULL, NULL, 2),
-  ('Leonardo', 'Cowabunga!', NULL, 1),
-  ('Batman', 'I hate clowns.', NULL, 1)
+  ('Superman', 'I''ll make you fly!', '/images/profiles/superman.png', 1),
+  ('Catwoman', 'Meow', '/images/profiles/catwoman.png', 2),
+  ('Leonardo', 'Cowabunga!', '/images/profiles/leonardo.png', 1),
+  ('Batman', 'I hate clowns.', '/images/profiles/batman.png', 1),
+  ('Michelangelo ', 'Let''s (not) share a pizza!', '/images/profiles/michelangelo.png', 1),
+  ('Pikachu', 'Pika.', '/images/profiles/pikachu.avif', 1)
 ;
 
 INSERT INTO hero_types (hero_id, type_id) 
@@ -83,7 +86,9 @@ VALUES
   (1, 2),
   (2, 1),
   (3, 3),
-  (4, 1)
+  (4, 1),
+  (5, 3),
+  (6, 6)
 ;
 
 INSERT INTO hero_interests (hero_id, interest_id) 
@@ -100,7 +105,10 @@ VALUES
   (3, 6),
   (4, 1),
   (4, 2),
-  (4, 6)
+  (4, 6),
+  (5, 2),
+  (5, 5),
+  (6, 6)
 ;
 `
 

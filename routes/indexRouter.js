@@ -14,8 +14,8 @@ const routes = [
 		linkTitle: "Home",
 	},
 	{
-		url: "/create-profile",
-		file: "create-profile",
+		url: "/new-hero",
+		file: "edit-hero",
 		title: "Create my profile",
 	},
 	{
@@ -35,10 +35,16 @@ indexRouter.get("/", (req, res, next) => {
 	indexController.getHomeView(req, res, next, { routes, route: routes[0] })
 })
 
-indexRouter.get("/create-profile", (req, res, next) => {
-	indexController.getNewProfileView(req, res, next, { routes, route: routes[1] })
+indexRouter.get("/new-hero", (req, res, next) => {
+	indexController.getEditHeroView(req, res, next, { routes, route: routes[1] })
 })
-indexRouter.post("/create-profile", indexController.addNewProfile)
+indexRouter.get("/edit-hero/:id", (req, res, next) => {
+	let route = {...routes[1]}
+	route.title = "Edit my profile"
+	indexController.getEditHeroView(req, res, next, { routes, route })
+})
+indexRouter.post("/new-hero", indexController.saveHero)
+indexRouter.post("/edit-hero/:id", indexController.saveHero)
 
 indexRouter.get("/admin", (req, res, next) => {
 	indexController.getView(req, res, next, { routes, route: routes[2] })
@@ -48,7 +54,7 @@ indexRouter.get("/hero/:id", (req, res, next) => {
 	indexController.getHeroView(req, res, next, { routes })
 })
 
-indexRouter.get("/delete-hero/:id", indexController.deleteHero)
+indexRouter.post("/delete-hero/:id", indexController.deleteHero)
 
 // indexRouter.get("/delete-all", indexController.deleteAll)
 

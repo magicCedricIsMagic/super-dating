@@ -15,7 +15,14 @@
 		<h2 class="h2">Amaze us!</h2>
 		<div class="spacer vertical"></div>
 
-		<form class="form" method="POST" action="/create-profile">
+		<form
+			class="form"
+			method="POST"
+			action="<%= hero?.id 
+				? `/edit-hero/${hero.id}` 
+				: "/new-hero"
+			%>"
+		>
 
 			<label class="form-field">
 				<span class="form-field__label">Name</span>
@@ -32,7 +39,7 @@
 				<span class="form-field__label">Sex</span>
 				<select name="sex" required class="form-field__input">
 					<% for (const sex of sexes) { %>
-						<option value="<%= sex.id %>">
+						<option value="<%= sex.id %>" <%= hero?.sex_id === sex.id ? "selected='selected'" : "" %>">
 							<%= sex.name %>
 						</option>
 					<% } %>
@@ -49,7 +56,7 @@
 				><%= hero?.bio %></textarea>
 			</label>
 
-			<input class="button" type="submit" value="Send" />
+			<input class="button" type="submit" value="Submit" />
 
 		</form>
 	</main>

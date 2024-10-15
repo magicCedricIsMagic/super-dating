@@ -49,15 +49,27 @@ async function addHero(hero) {
     INSERT INTO heroes (name, bio, photo, sex_id)
     VALUES ($1, $2, $3, $4)
   `, [hero.name, hero.bio, hero.photo, hero.sex])
+
+  const { rows } = await pool.query(`
+    SELECT id FROM heroes
+    ORDER BY id DESC
+    LIMIT 1;
+  `)
+  console.log("newHeroId", rows[0])
+  return rows[0].id
 }
 
-/* async function updateHero(hero) {
+async function updateHero(hero) {
 	await pool.query(`
     UPDATE heroes
-    SET text = $2, name = $3
+    SET name = $2 
+      , bio = $3
+      , photo = $4
+      , sex_id = $5
     WHERE id = $1
-  `, ["" + hero.id, hero.text, hero.name])
-} */
+  `, ["" + hero.id, hero.name, hero.bio, hero.photo, hero.sex])
+  return hero.id
+}
 
 
 async function deleteHero(id) {
@@ -111,7 +123,7 @@ module.exports = {
   getHeroTypes,
   getHeroInterests,
   addHero,
-  /* updateHero, */
+  updateHero,
   deleteHero,
   deleteAllHeroes,
   getAllSexes,

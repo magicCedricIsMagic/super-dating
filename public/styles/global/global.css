@@ -25,6 +25,10 @@
 		--col-background: oklch(from var(--base-col-dark) 15% 3.5% h);
 	}
 
+	*:focus-visible {
+		outline-color: rgb(from var(--col-interactive) r g b / 15%);
+	}
+
 	--col-red: var(--col-danger);
 	--col-white: white;
 	

@@ -33,7 +33,12 @@
 	}
 	&.danger {
 		--btn-col: var(--col-danger);
-		/* --btn-col-hover: oklch(from var(--btn-col) calc(l * 0.67) calc(c * 1.125) h); */
+	}
+	&.gray {
+		--text-col: var(--col-dark);
+		/* --btn-col: color-mix(in srgb, var(--col-gray) 75%, var(--col-dark)); */
+		--btn-col: color-mix(in srgb, var(--col-gray), transparent);
+		--btn-col-hover: oklch(from var(--btn-col) calc(l * 0.9) c h);
 	}
 	&.sm {
 		font-size: var(--text-sm);

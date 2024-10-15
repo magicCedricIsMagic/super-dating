@@ -56,7 +56,24 @@
 				><%= hero?.bio %></textarea>
 			</label>
 
-			<input class="button" type="submit" value="Submit" />
+			<section class="flex wrap justify-end gap-sm">
+				<% if (hero?.id) { %>
+					<a
+						href="/hero/<%= hero.id %>"
+						class="button gray"
+					>
+						Cancel
+					</a>
+				<% } else { %>
+					<button
+						onclick="history.back()"
+						class="button gray"
+					>
+					Cancel
+					</button>
+				<% } %>
+				<input class="button success" type="submit" value="Submit" />
+			</section>
 
 		</form>
 	</main>

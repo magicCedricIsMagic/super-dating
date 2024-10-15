@@ -58,7 +58,8 @@ VALUES
   ('Mutant'),
   ('Robot'),
   ('God'),
-  ('Monster')
+  ('Monster'),
+  ('Toy')
 ;
 
 INSERT INTO interests (name) 
@@ -68,7 +69,9 @@ VALUES
   ('World saving'),
   ('Journalism'),
   ('Pizza'),
-  ('Animals')
+  ('Animals'),
+  ('Fire'),
+  ('Traveling')
 ;
 
 INSERT INTO heroes (name, bio, photo, sex_id) 
@@ -78,7 +81,10 @@ VALUES
   ('Leonardo', 'Cowabunga!', '/images/profiles/leonardo.png', 1),
   ('Batman', 'I hate clowns.', '/images/profiles/batman.png', 1),
   ('Michelangelo ', 'Let''s (not) share a pizza!', '/images/profiles/michelangelo.png', 1),
-  ('Pikachu', 'Pika.', '/images/profiles/pikachu.avif', 1)
+  ('Pikachu', 'Pika.', '/images/profiles/pikachu.avif', 1),
+  ('Daenerys', 'I am not your little princess.', '/images/profiles/daenerys.png', 2),
+  ('Lara Croft', 'Don''t you think you''ve seen enough?.', '/images/profiles/lara-croft.png', 2),
+  ('Barbie', 'Do you guys ever think about dying?', '/images/profiles/barbie.png', 2)
 ;
 
 INSERT INTO hero_types (hero_id, type_id) 
@@ -88,7 +94,10 @@ VALUES
   (3, 3),
   (4, 1),
   (5, 3),
-  (6, 6)
+  (6, 6),
+  (7, 1),
+  (8, 1),
+  (9, 7)
 ;
 
 INSERT INTO hero_interests (hero_id, interest_id) 
@@ -108,7 +117,16 @@ VALUES
   (4, 6),
   (5, 2),
   (5, 5),
-  (6, 6)
+  (6, 6),
+  (7, 1),
+  (7, 6),
+  (7, 7),
+  (8, 2),
+  (8, 8),
+  (9, 1),
+  (9, 4),
+  (9, 6),
+  (9, 8)
 ;
 `
 

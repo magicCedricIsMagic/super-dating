@@ -10,10 +10,29 @@ async function getAllHeroes() {
 
 async function getHero(id) {
   const { rows } = await pool.query(`
-    SELECT * FROM heroes
-    WHERE id = $1
+    SELECT heroes.*, sexes.name as sex_name FROM heroes
+    JOIN sexes ON sexes.id = heroes.sex_id
+    WHERE heroes.id = $1
   `, [id])
   return rows[0]
+}
+
+async function getHeroTypes(heroId) {
+  const { rows } = await pool.query(`
+    SELECT types.id, types.name FROM types
+    JOIN hero_types ON hero_types.type_id = types.id
+    WHERE hero_types.hero_id = $1;
+  `, [heroId])
+  return rows
+}
+
+async function getHeroInterests(heroId) {
+  const { rows } = await pool.query(`
+    SELECT interests.id, interests.name FROM interests
+    JOIN hero_interests ON hero_interests.interest_id = interests.id
+    WHERE hero_interests.hero_id = $1;
+  `, [heroId])
+  return rows
 }
 
 async function getRandomHeroes(quantity) {
@@ -87,8 +106,10 @@ async function emptyDatabase() {
 
 module.exports = {
   getAllHeroes,
-  getHero,
   getRandomHeroes,
+  getHero,
+  getHeroTypes,
+  getHeroInterests,
   addHero,
   /* updateHero, */
   deleteHero,

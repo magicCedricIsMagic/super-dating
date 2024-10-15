@@ -44,6 +44,10 @@ indexRouter.get("/admin", (req, res, next) => {
 	indexController.getView(req, res, next, { routes, route: routes[2] })
 })
 
+indexRouter.get("/hero/:id", (req, res, next) => {
+	indexController.getHeroView(req, res, next, { routes })
+})
+
 indexRouter.get("/delete-hero/:id", indexController.deleteHero)
 
 // indexRouter.get("/delete-all", indexController.deleteAll)

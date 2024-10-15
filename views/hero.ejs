@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+	<head>
+		<%- include("includes/headContent") %>
+		<link rel="stylesheet" href="/styles/home/hero-card.css">
+	</head>
+
+	<body>
+		<%- include("includes/header") %>
+		<div class="spacer vertical lg"></div>
+
+		<main class="main full">
+
+			<article class="card hero-card">
+				<div class="hero-card__photo">
+					<% if (hero.photo) { %>
+						<img src="<%= hero.photo %>" alt="<%= hero.name %>">
+					<% } else { %>
+						<i class="fa-solid fa-mask"></i>
+					<% } %>
+				</div>
+				<div class="spacer vertical sm"></div>
+				<h2 class="h1">
+					<%= hero.name %>&nbsp;
+					<% if (hero.sex_id === 1) { %><i class="h2 opacity-50 fa-solid fa-mars"></i><% } %>
+					<% if (hero.sex_id === 2) { %><i class="h2 opacity-50 fa-solid fa-venus"></i><% } %>
+				</h2>
+				
+				<% if (hero.types.length) { %>
+					<div class="spacer vertical xs"></div>
+					<section class="badges">
+						<% for (const type of hero.types) { %>
+							<div class="badge white">
+								<%= type.name %>
+							</div>
+						<% } %>
+					</section>
+				<% } %>
+
+				<% if (hero.bio) { %>
+					<div class="spacer vertical md"></div>
+					<h3 class="h4">About me</h3>
+					<div class="spacer vertical xs"></div>
+					<p><%= hero.bio %></p>
+				<% } %>
+
+				<% if (hero.interests.length) { %>
+					<div class="spacer vertical md"></div>
+					<h3 class="h4">Interests</h3>
+					<div class="spacer vertical xs"></div>
+					<section class="badges">
+						<% for (const interest of hero.interests) { %>
+							<div class="badge gray">
+								<%= interest.name %>
+							</div>
+						<% } %>
+					</section>
+				<% } %>
+					
+				<div class="separator horizontal md"></div>
+				<section class="flex wrap gap-sm">
+					<a href="#" class="button sm primary">Update hero</a>
+					<a href="#" class="button sm danger">Delete hero</a>
+				</section>
+
+			</article>
+
+
+		</main>
+
+	</body>
+
+</html>

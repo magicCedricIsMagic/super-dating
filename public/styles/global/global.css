@@ -26,6 +26,7 @@
 	}
 
 	--col-red: var(--col-danger);
+	--col-white: white;
 	
 	--xxxs: 0.5rem;
 	--xxs: 0.75rem;
@@ -201,4 +202,8 @@ a {
 		width: 100%;
 		max-width: 120rem;
 	}
+}
+
+.opacity-50 {
+	opacity: 50%;
 }

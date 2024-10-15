@@ -6,7 +6,7 @@
 
 .button {
 	--btn-col: var(--col-interactive);
-	--btn-col-hover: oklch(from var(--btn-col) calc(l * 0.75) calc(c * 1.25) h);
+	--btn-col-hover: oklch(from var(--btn-col) calc(l * 0.67) c h);
 	--text-col: var(--col-background);
 	
 	display: grid;
@@ -33,6 +33,7 @@
 	}
 	&.danger {
 		--btn-col: var(--col-danger);
+		/* --btn-col-hover: oklch(from var(--btn-col) calc(l * 0.67) calc(c * 1.125) h); */
 	}
 	&.sm {
 		font-size: var(--text-sm);

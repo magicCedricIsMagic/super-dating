@@ -29,6 +29,20 @@ async function getHomeView(req, res, next, params) {
 	})
 }
 
+
+async function getHeroView(req, res, next, params) {
+	const hero = await db.getHero(req.params.id)
+	const types = await db.getHeroTypes(req.params.id)
+	const interests = await db.getHeroInterests(req.params.id)
+	hero.types = types
+	hero.interests = interests
+	res.render("hero", {
+		title: hero.name,
+		links: params.routes,
+		hero,
+	})
+}
+
 async function getNewProfileView(req, res, next, params) {
 	const sexes = await db.getAllSexes()
 	const types = await db.getAllTypes()
@@ -105,6 +119,7 @@ module.exports = {
 	getView,
 	getErrorView,
 	getHomeView,
+	getHeroView,
 	getNewProfileView,
 	addNewProfile,
 	deleteHero,

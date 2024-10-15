@@ -1,0 +1,18 @@
+.badges {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--xs);
+}
+
+.badge {
+	background-color: var(--col-light);
+	padding: var(--xxxs) var(--xs);
+	border-radius: var(--xs);
+
+	&.white {
+		background-color: var(--col-white);
+	}
+	&.gray {
+		background-color: color-mix(in srgb, var(--col-gray), transparent);
+	}
+}

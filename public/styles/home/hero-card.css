@@ -1,5 +1,13 @@
 .hero-card {
 	padding-block: var(--md);
+	
+	&.lg {
+		padding-block: var(--lg);
+		.hero-card__photo {
+			width: 20rem;
+			height: 20rem;
+		}
+	}
 }
 
 .hero-card__photo {

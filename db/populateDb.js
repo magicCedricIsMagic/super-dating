@@ -83,7 +83,7 @@ VALUES
   ('Michelangelo ', 'Let''s (not) share a pizza!', '/images/profiles/michelangelo.png', 1),
   ('Pikachu', 'Pika.', '/images/profiles/pikachu.avif', 1),
   ('Daenerys', 'I am not your little princess.', '/images/profiles/daenerys.png', 2),
-  ('Lara Croft', 'Don''t you think you''ve seen enough?.', '/images/profiles/lara-croft.png', 2),
+  ('Lara Croft', 'Don''t you think you''ve seen enough?', '/images/profiles/lara-croft.png', 2),
   ('Barbie', 'Do you guys ever think about dying?', '/images/profiles/barbie.png', 2)
 ;
 

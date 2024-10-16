@@ -29,11 +29,20 @@
 				<input name="name" required class="form-field__input" value="<%= hero?.name %>" />
 			</label>
 
-			<label class="form-field">
-				<span class="form-field__label">Picture url</span>
-				<input name="photo" class="form-field__input" value="<%= hero?.photo %>" />
-			</label>
-
+			<fieldset class="form-field form-field__fieldset">
+				<legend class="form-field__label">Type(s)</legend>
+				<% for (const type of types) { %>
+				<label class="form-field__checkbox">
+					<input
+					type="checkbox"
+					name="types"
+					value="<%= type.id %>"
+					<%= hero?.types.map(heroType => heroType.id).includes(type.id) ? "checked='checked'" : "" %>
+					/>
+					<span><%= type.name %></span>
+				</label>
+				<% } %>
+			</fieldset>
 
 			<label class="form-field">
 				<span class="form-field__label">Sex</span>
@@ -47,14 +56,33 @@
 			</label>
 
 			<label class="form-field">
+				<span class="form-field__label">Picture url</span>
+				<input name="photo" class="form-field__input" value="<%= hero?.photo %>" />
+			</label>
+
+			<label class="form-field">
 				<span class="form-field__label">Bio</span>
 				<textarea
 					name="bio"
-					required
 					class="form-field__input"
 					rows="5"
 				><%= hero?.bio %></textarea>
 			</label>
+
+			<fieldset class="form-field form-field__fieldset">
+				<legend class="form-field__label">Interest(s)</legend>
+				<% for (const interest of interests) { %>
+				<label class="form-field__checkbox">
+					<input
+					type="checkbox"
+					name="interests"
+					value="<%= interest.id %>"
+					<%= hero?.interests.map(heroInterest => heroInterest.id).includes(interest.id) ? "checked='checked'" : "" %>
+					/>
+					<span><%= interest.name %></span>
+				</label>
+				<% } %>
+			</fieldset>
 
 			<section class="flex wrap justify-end gap-sm">
 				<% if (hero?.id) { %>

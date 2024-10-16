@@ -12,7 +12,7 @@
 
 		<main class="main full">
 
-			<article class="card hero-card">
+			<article class="card hero-card lg">
 				<div class="hero-card__photo">
 					<% if (hero.photo) { %>
 						<img src="<%= hero.photo %>" alt="<%= hero.name %>">
@@ -28,7 +28,7 @@
 				</h2>
 				
 				<% if (hero.types.length) { %>
-					<div class="spacer vertical xs"></div>
+					<div class="spacer vertical sm"></div>
 					<section class="badges">
 						<% for (const type of hero.types) { %>
 							<div class="badge white">
@@ -39,14 +39,14 @@
 				<% } %>
 
 				<% if (hero.bio) { %>
-					<div class="spacer vertical md"></div>
+					<div class="spacer vertical lg"></div>
 					<h3 class="h4">About me</h3>
 					<div class="spacer vertical xs"></div>
-					<p><%= hero.bio %></p>
+					<p class="h2"><%= hero.bio %></p>
 				<% } %>
 
 				<% if (hero.interests.length) { %>
-					<div class="spacer vertical md"></div>
+					<div class="spacer vertical lg"></div>
 					<h3 class="h4">Interests</h3>
 					<div class="spacer vertical xs"></div>
 					<section class="badges">
@@ -54,14 +54,15 @@
 							<div class="badge sm gray">
 								<%= interest.name %>
 							</div>
-						<% } %>
+							<% } %>
 					</section>
 				<% } %>
 					
+							<div class="spacer vertical md"></div>
 				<div class="separator horizontal md"></div>
-				<section class="flex wrap gap-sm">
-					<a href="/edit-hero/<%= hero.id %>" class="button sm primary">Update hero</a>
-					<button onclick="openDeleteModal()" class="button sm danger">Delete hero</button>
+				<section class="flex justify-end wrap gap-sm">
+					<button onclick="openDeleteModal()" class="button danger">Delete hero</button>
+					<a href="/edit-hero/<%= hero.id %>" class="button primary">Update hero</a>
 				</section>
 
 			</article>

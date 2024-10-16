@@ -34,6 +34,9 @@
 	&.danger {
 		--btn-col: var(--col-danger);
 	}
+	&.success {
+		--btn-col: var(--col-success);
+	}
 	&.gray {
 		--text-col: var(--col-dark);
 		/* --btn-col: color-mix(in srgb, var(--col-gray) 75%, var(--col-dark)); */

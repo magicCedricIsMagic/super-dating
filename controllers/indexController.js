@@ -32,51 +32,58 @@ async function getHomeView(req, res, next, params) {
 
 async function getHeroView(req, res, next, params) {
 	const hero = await db.getHero(req.params.id)
-	const types = await db.getHeroTypes(req.params.id)
-	const interests = await db.getHeroInterests(req.params.id)
-	hero.types = types
-	hero.interests = interests
-	res.render("hero", {
-		title: hero.name,
-		links: params.routes,
-		hero,
-	})
-}
-
-async function getEditHeroView(req, res, next, params) {
-	const heroId = req.params.id
-	let hero
-	if (heroId) {
-		hero = await db.getHero(req.params.id)
+	if (!hero) {
+		next()
+	}
+	else {
 		const types = await db.getHeroTypes(req.params.id)
 		const interests = await db.getHeroInterests(req.params.id)
 		hero.types = types
 		hero.interests = interests
-	} 
+		res.render("hero", {
+			title: hero.name,
+			links: params.routes,
+			hero,
+		})
+	}
+}
 
-	const sexes = await db.getAllSexes()
-	const types = await db.getAllTypes()
-	const interests = await db.getAllInterests()
-	
-	res.render(params.route.file, {
-		title: params.route.title,
-		links: params.routes,
-		hero: hero,
-		sexes,
-		types,
-		interests,
-	})
+async function getEditHeroView(req, res, next, params) {
+	const hero = await db.getHero(req.params.id)
+	if (req.params.id && !hero) {
+		next()
+	}
+	else {
+		if (hero) {
+			const types = await db.getHeroTypes(req.params.id)
+			const interests = await db.getHeroInterests(req.params.id)
+			hero.types = types
+			hero.interests = interests
+		}
+		const sexes = await db.getAllSexes()
+		const types = await db.getAllTypes()
+		const interests = await db.getAllInterests()
+
+		res.render(params.route.file, {
+			title: params.route.title,
+			links: params.routes,
+			hero: hero,
+			sexes,
+			types,
+			interests,
+		})
+	}
 }
 
 const validateProfile = [
 	body("name")
 		.isLength({ min: 1, max: 100 })
 		.withMessage(`Name must be between 1 and 100 caracters`),
-	/* 	body("sex")
-			.isInt()
-			.withMessage(`Sex must be Int`)
-			.isLength({ min: 1, max: 1 })
-			.withMessage(`Sex must be of 1 character`) */
+	body("photo")
+		.if((value/* , { req } */) => value.length > 0)
+		.if((value) => value[0] !== "/")
+		.isURL()
+		.withMessage(`Photo must be a valid URL`),
 ]
 const saveHero = [
 	validateProfile,
@@ -100,6 +107,8 @@ const saveHero = [
 					photo: sanitize(req.body.photo),
 					sex: sanitize(req.body.sex),
 					bio: sanitize(req.body.bio),
+					types: formatCheckboxesData(req.body.types),
+					interests: formatCheckboxesData(req.body.interests),
 				}
 				let newHeroId
 				if (req.params.id) {
@@ -116,6 +125,16 @@ const saveHero = [
 		}
 	}
 ]
+
+function formatCheckboxesData(initialData) {
+	let newData = []
+	if (initialData) {
+		newData = Array.isArray(initialData)
+			? initialData
+			: [initialData]
+	}
+	return newData.map(d => sanitize(d))
+}
 
 async function deleteHero(req, res, next) {
 	await db.deleteHero(req.params.id)

@@ -1,6 +1,7 @@
 :root {
 	--base-col-primary: oklch(55% 55% 230);
-	--base-col-danger: oklch(from var(--col-interactive) l c 15);
+	--base-col-danger: oklch(from var(--col-interactive) 55% c 15);
+	--base-col-success: oklch(from var(--col-interactive) 55% c 170);
 	--base-col-interactive: oklch(from var(--col-primary) 50% 75% h);
 	--base-col-dark: oklch(from var(--col-primary) 35% 20% h);
 	--base-col-gray: color-mix(in srgb, var(--col-dark) 40%, white);
@@ -10,6 +11,7 @@
 	--col-primary: var(--base-col-primary);
 	--col-interactive: var(--base-col-interactive);
 	--col-danger: var(--base-col-danger);
+	--col-success: var(--base-col-success);
 	--col-dark: var(--base-col-dark);
 	--col-gray: var(--base-col-gray);
 	--col-light: var(--base-col-light);
@@ -19,6 +21,7 @@
 		--col-primary: oklch(from var(--base-col-primary) 90% 15% h);
 		--col-interactive: oklch(from var(--base-col-interactive) 90% 55% h);
 		--col-danger: oklch(from var(--base-col-danger) 75% 65% h);
+		--col-success: oklch(from var(--base-col-success) 75% 65% h);
 		--col-dark: oklch(from var(--base-col-primary) 100% 5% h);
 		--col-gray: oklch(from var(--base-col-gray) 60% c h);
 		--col-light: oklch(from var(--base-col-dark) 25% 3.5% h);
@@ -30,6 +33,7 @@
 	}
 
 	--col-red: var(--col-danger);
+	--col-green: var(--col-success);
 	--col-white: white;
 	
 	--xxxs: 0.5rem;
@@ -124,6 +128,21 @@ body {
 
 .h1, .h2, .h3, .h4, .h5, .h6, p, ul {
 	margin: unset;
+}
+
+.text-truncate {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+}
+.text-truncate--1 {
+	-webkit-line-clamp: 1;
+}
+.text-truncate--2 {
+	-webkit-line-clamp: 2;
+}
+.text-truncate--3 {
+	-webkit-line-clamp: 3;
 }
 
 a {

@@ -17,6 +17,7 @@
 	}
 	a {
 		font-weight: 600;
+		font-size: var(--text-lg);
 		&:not([href]) {
 			color: var(--col-gray);
 		}

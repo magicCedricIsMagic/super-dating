@@ -31,9 +31,9 @@
 					<% if (hero.types.length) { %>
 						<section class="badges">
 							<% for (const type of hero.types) { %>
-								<div class="badge white">
+								<a class="badge white" href="/heroes-by-type/<%= type.id %>">
 									<%= type.name %>
-								</div>
+								</a>
 							<% } %>
 						</section>
 					<% } %>
@@ -53,9 +53,9 @@
 						<div class="spacer vertical xs"></div>
 						<div class="badges">
 							<% for (const interest of hero.interests) { %>
-								<div class="badge sm gray">
+								<a class="badge sm gray" href="/heroes-by-interest/<%= interest.id %>">
 									<%= interest.name %>
-								</div>
+								</a>
 								<% } %>
 						</section>
 					</section>

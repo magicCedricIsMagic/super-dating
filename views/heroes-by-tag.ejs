@@ -8,12 +8,12 @@
 
 	<body>
 		<%- include("includes/header") %>
-		<div class="spacer vertical lg"></div>
+		<div class="spacer vertical xl"></div>
 
 		<main class="main full">
-			<h2 class="h2"><%= heroes.length %> random match<%= heroes.length > 1 ? "es" : "" %>:</h2>
+			<h1 class="h1"><%= title %></h1>
 			
-			<div class="spacer vertical"></div>
+			<div class="spacer vertical lg"></div>
 			<section class="grid sm heroes-list">
 				<% for (const hero of heroes) { %>
 					<a href="/hero/<%= hero.id %>" class="card hero-card">

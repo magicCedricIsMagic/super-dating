@@ -71,6 +71,33 @@ async function getRandomHeroes(quantity) {
   }
 }
 
+async function getHeroesByType(typeId) {
+  try {
+    const { rows } = await pool.query(`
+      SELECT heroes.* FROM heroes
+      JOIN hero_types ON heroes.id = hero_types.hero_id
+      WHERE hero_types.type_id = $1
+    `, [typeId])
+    return rows
+  }
+  catch (error) {
+    console.error("error", error)
+  }
+}
+async function getHeroesByInterest(interestId) {
+  try {
+    const { rows } = await pool.query(`
+      SELECT heroes.* FROM heroes
+      JOIN hero_interests ON heroes.id = hero_interests.hero_id
+      WHERE hero_interests.interest_id = $1
+    `, [interestId])
+    return rows
+  }
+  catch (error) {
+    console.error("error", error)
+  }
+}
+
 async function addHero(hero) {
   try {
     await pool.query(`
@@ -254,6 +281,30 @@ async function getAllInterests() {
     console.error("error", error)
   }
 }
+async function getType(typeId) {
+  try {
+    const { rows } = await pool.query(`
+      SELECT * FROM types
+      WHERE id = $1
+    `, [typeId])
+    return rows[0]
+  }
+  catch (error) {
+    console.error("error", error)
+  }
+}
+async function getInterest(interestId) {
+  try {
+    const { rows } = await pool.query(`
+      SELECT * FROM interests
+      WHERE id = $1
+    `, [interestId])
+    return rows[0]
+  }
+  catch (error) {
+    console.error("error", error)
+  }
+}
 
 async function emptyDatabase() {
   try {
@@ -273,6 +324,8 @@ async function emptyDatabase() {
 module.exports = {
   getAllHeroes,
   getRandomHeroes,
+  getHeroesByType,
+  getHeroesByInterest,
   getHero,
   getHeroTypes,
   getHeroInterests,
@@ -283,5 +336,7 @@ module.exports = {
   getAllSexes,
   getAllTypes,
   getAllInterests,
+  getType,
+  getInterest,
   emptyDatabase,
 }

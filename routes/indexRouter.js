@@ -35,6 +35,13 @@ indexRouter.get("/", (req, res, next) => {
 	indexController.getHomeView(req, res, next, { routes, route: routes[0] })
 })
 
+indexRouter.get("/heroes-by-type/:id", (req, res, next) => {
+	indexController.getHeroesByTypeView(req, res, next, { routes })
+})
+indexRouter.get("/heroes-by-interest/:id", (req, res, next) => {
+	indexController.getHeroesByInterestView(req, res, next, { routes })
+})
+
 indexRouter.get("/new-hero", (req, res, next) => {
 	indexController.getEditHeroView(req, res, next, { routes, route: routes[1] })
 })

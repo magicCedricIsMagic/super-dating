@@ -29,6 +29,36 @@ async function getHomeView(req, res, next, params) {
 	})
 }
 
+async function getHeroesByTypeView(req, res, next, params) {
+	const type = await db.getType(req.params.id)
+	if (!type) {
+		next()
+	}
+	else {
+		const heroes = await db.getHeroesByType(type.id)
+		res.render("heroes-by-tag", {
+			title: `Some ${type.name.toLowerCase()}s you may like`,
+			links: params.routes,
+			type,
+			heroes,
+		})
+	}
+}
+async function getHeroesByInterestView(req, res, next, params) {
+	const interest = await db.getInterest(req.params.id)
+	if (!interest) {
+		next()
+	}
+	else {
+		const heroes = await db.getHeroesByInterest(interest.id)
+		res.render("heroes-by-tag", {
+			title: `They like ${interest.name.toLowerCase()}`,
+			links: params.routes,
+			interest,
+			heroes,
+		})
+	}
+}
 
 async function getHeroView(req, res, next, params) {
 	const hero = await db.getHero(req.params.id)
@@ -118,8 +148,6 @@ const saveHero = [
 				else {
 					newHeroId = await db.addHero(hero)
 				}
-				console.log("newHeroId", newHeroId)
-				// res.redirect(`/`)
 				res.redirect(`/hero/${newHeroId}`)
 			})()
 		}
@@ -150,6 +178,8 @@ module.exports = {
 	getView,
 	getErrorView,
 	getHomeView,
+	getHeroesByTypeView,
+	getHeroesByInterestView,
 	getHeroView,
 	getEditHeroView,
 	saveHero,

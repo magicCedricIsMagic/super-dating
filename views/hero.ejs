@@ -10,60 +10,65 @@
 		<%- include("includes/header") %>
 		<div class="spacer vertical lg"></div>
 
-		<main class="main full">
+		<main class="main">
 
-			<article class="card hero-card lg">
-				<div class="hero-card__photo">
-					<% if (hero.photo) { %>
-						<img src="<%= hero.photo %>" alt="<%= hero.name %>">
-					<% } else { %>
-						<i class="fa-solid fa-mask"></i>
-					<% } %>
-				</div>
-				<div class="spacer vertical sm"></div>
-				<h2 class="h1">
-					<%= hero.name %>&nbsp;<!-- 
-					--><% if (hero.sex_id === 1) { %><i class="h2 opacity-50 fa-solid fa-mars"></i><% } %><!-- 
-					--><% if (hero.sex_id === 2) { %><i class="h2 opacity-50 fa-solid fa-venus"></i><% } %>
-				</h2>
-				
-				<% if (hero.types.length) { %>
-					<div class="spacer vertical sm"></div>
-					<section class="badges">
-						<% for (const type of hero.types) { %>
-							<div class="badge white">
-								<%= type.name %>
-							</div>
+			<article class="card hero-card lg flex column gap-lg">
+				<header class="flex column align-center gap-sm">
+					<div class="hero-card__photo">
+						<% if (hero.photo) { %>
+							<img src="<%= hero.photo %>" alt="<%= hero.name %>">
+						<% } else { %>
+							<i class="fa-solid fa-mask"></i>
 						<% } %>
-					</section>
-				<% } %>
+					</div>
+					
+					<h2 class="h1">
+						<%= hero.name %>&nbsp;<!--
+						--><% if (hero.sex_id === 1) { %><i class="h2 opacity-50 fa-solid fa-mars"></i><% } %><!--
+						--><% if (hero.sex_id === 2) { %><i class="h2 opacity-50 fa-solid fa-venus"></i><% } %>
+					</h2>
+					
+					<% if (hero.types.length) { %>
+						<section class="badges">
+							<% for (const type of hero.types) { %>
+								<div class="badge white">
+									<%= type.name %>
+								</div>
+							<% } %>
+						</section>
+					<% } %>
+				</header>
 
 				<% if (hero.bio) { %>
-					<div class="spacer vertical lg"></div>
-					<h3 class="h4">About me</h3>
-					<div class="spacer vertical xs"></div>
-					<p class="h2"><%= hero.bio %></p>
+					<section class="bio">
+						<h3 class="h4">About me</h3>
+						<div class="spacer vertical xs"></div>
+						<p class="h2"><%= hero.bio %></p>
+					</section>
 				<% } %>
 
 				<% if (hero.interests.length) { %>
-					<div class="spacer vertical lg"></div>
-					<h3 class="h4">Interests</h3>
-					<div class="spacer vertical xs"></div>
-					<section class="badges">
-						<% for (const interest of hero.interests) { %>
-							<div class="badge sm gray">
-								<%= interest.name %>
-							</div>
-							<% } %>
+					<section class="interests">
+						<h3 class="h4">Interests</h3>
+						<div class="spacer vertical xs"></div>
+						<div class="badges">
+							<% for (const interest of hero.interests) { %>
+								<div class="badge sm gray">
+									<%= interest.name %>
+								</div>
+								<% } %>
+						</section>
 					</section>
 				<% } %>
 					
-							<div class="spacer vertical md"></div>
-				<div class="separator horizontal md"></div>
-				<section class="flex justify-end wrap gap-sm">
-					<button onclick="openDeleteModal()" class="button danger">Delete hero</button>
-					<a href="/edit-hero/<%= hero.id %>" class="button primary">Update hero</a>
-				</section>
+				<footer>
+					<div class="separator horizontal"></div>
+					<div class="spacer vertical lg"></div>
+					<section class="flex justify-center wrap gap-sm">
+						<button onclick="openDeleteModal()" class="button danger">Delete hero</button>
+						<a href="/edit-hero/<%= hero.id %>" class="button primary">Update hero</a>
+					</section>
+				</footer>
 
 			</article>
 

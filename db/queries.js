@@ -33,6 +33,7 @@ async function getHeroTypes(heroId) {
       SELECT types.id, types.name FROM types
       JOIN hero_types ON hero_types.type_id = types.id
       WHERE hero_types.hero_id = $1
+      ORDER BY types.name
     `, [heroId])
     return rows
   }
@@ -47,6 +48,7 @@ async function getHeroInterests(heroId) {
       SELECT interests.id, interests.name FROM interests
       JOIN hero_interests ON hero_interests.interest_id = interests.id
       WHERE hero_interests.hero_id = $1
+      ORDER BY interests.name
     `, [heroId])
     return rows
   }
@@ -232,7 +234,7 @@ async function getAllTypes() {
   try {
     const { rows } = await pool.query(`
       SELECT * FROM types
-      ORDER BY id
+      ORDER BY name
     `)
     return rows
   }

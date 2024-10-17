@@ -5,15 +5,24 @@
 		display: flex;
 		justify-content: center;
 		flex-wrap: wrap;
-		gap: var(--sm) var(--xxl);
+		text-align: center;
+		gap: var(--md) var(--xxl);
 		padding: unset;
+		@media (width < 800px) {
+			column-gap: var(--lg);
+		}
+		@media (width < 500px) {
+			flex-direction: column;
+			align-items: center;
+			width: 100%;
+		}
 	}
 	li {
 		display: block;
 		line-height: var(--line-height-sm);
-		@container navbar (width < 400px) {
+		/* @container navbar (width < 400px) {
 			width: min-content;
-		}
+		} */
 	}
 	a {
 		font-weight: 600;

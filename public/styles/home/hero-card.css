@@ -2,10 +2,27 @@
 	padding-block: var(--md);
 	
 	&.lg {
+		/* width: 46rem; */
+		width: 60ch;
+		max-width: calc(100vw - var(--lg) * 2);
 		padding-block: var(--lg);
 		.hero-card__photo {
 			width: 20rem;
 			height: 20rem;
+		}
+	}
+
+	.h1 {
+		text-align: center;
+		line-height: 1;
+		@media (width < 500px) {
+			line-break: anywhere;
+		}
+	}
+
+	.bio {
+		.h2 {
+			line-height: inherit;
 		}
 	}
 }

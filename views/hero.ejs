@@ -3,12 +3,12 @@
 
 	<head>
 		<%- include("includes/headContent") %>
-		<link rel="stylesheet" href="/styles/home/hero-card.css">
+		<link rel="stylesheet" href="/styles/hero-card.css">
 	</head>
 
 	<body>
 		<%- include("includes/header") %>
-		<div class="spacer vertical lg"></div>
+		<div class="spacer vertical xl"></div>
 
 		<main class="main">
 
@@ -65,8 +65,8 @@
 					<div class="separator horizontal"></div>
 					<div class="spacer vertical lg"></div>
 					<section class="flex justify-center wrap gap-sm">
-						<button onclick="openDeleteModal()" class="button danger">Delete hero</button>
 						<a href="/edit-hero/<%= hero.id %>" class="button primary">Update hero</a>
+						<button onclick="openDeleteModal()" class="button danger">Delete hero</button>
 					</section>
 				</footer>
 
@@ -75,9 +75,9 @@
 		</main>
 
 		<dialog id="delete-modal" class="modal">
-			<h3 class="h3">Are you sure you want to delete this hero?</h3>
+			<h3 class="h3">Are you sure you want to delete “<%= hero.name %>”?</h3>
 			<div class="spacer vertical md"></div>
-			<p>The deletion will be permanent.</p>
+			<p>The deletion of this hero will be permanent.</p>
 			<div class="spacer vertical lg"></div>
 			<div class="flex gap-sm justify-end align-center">
 				<button class="button gray" onclick="closeDeleteModal()">Cancel</button>

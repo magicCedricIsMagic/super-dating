@@ -9,6 +9,9 @@
 		.hero-card__photo {
 			width: 20rem;
 			height: 20rem;
+			> i {
+				font-size: 10rem;
+			}
 		}
 	}
 
@@ -25,6 +28,19 @@
 			line-height: inherit;
 		}
 	}
+	
+	&:is(a[href]) {
+		&:hover,
+		&:focus-visible {
+			scale: 105%;
+			.hero-card__photo {
+				background-color: color-mix(in srgb, color-mix(in srgb, var(--col-gray) 80%, var(--col-interactive)), transparent);
+				/* > img {
+					filter: saturate(125%) brightness(117%);
+				} */
+			}
+		}
+	}
 }
 
 .hero-card__photo {
@@ -39,6 +55,7 @@
 		object-fit: cover;
 		width: 100%;
 		height: 100%;
+		transition: var(--transition);
 	}
 	> i {
 		font-size: 5rem;

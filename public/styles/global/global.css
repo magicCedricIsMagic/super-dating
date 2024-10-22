@@ -111,7 +111,9 @@ body {
 
 .h1 {
 	font-size: var(--text-xxl);
-	color: var(--col-primary);
+	/* color: var(--col-dark); */
+	/* color: var(--col-primary); */
+	color: color-mix(in srgb, var(--col-primary) 40%, var(--col-dark));
 }
 
 .h2 {

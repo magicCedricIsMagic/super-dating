@@ -27,6 +27,7 @@
 	&:hover {
 		background-color: var(--btn-col-hover);
 		border-color: var(--btn-col-hover);
+		scale: 107.5%;
 	}
 	&:focus-visible {
 		outline-color: rgb(from var(--btn-col-hover) r g b / 30%);
@@ -64,5 +65,6 @@
 	&:hover {
 		color: var(--btn-col-hover);
 		background-color: color-mix(in srgb, var(--btn-col) 20%, transparent);
+		scale: unset;
 	}
 }

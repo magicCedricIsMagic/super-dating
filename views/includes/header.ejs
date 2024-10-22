@@ -1,7 +1,13 @@
 <%- include("./navbar") %>
 <div class="spacer vertical"></div>
 <header class="header">
-	<h1 class="header__title"><a href="/">Super Dating</a></h1>
+	<h1 class="header__title">
+		<% if (title !== links[0].title) { %> 
+			<a href="/"><%= links[0].title %></a>
+		<% } else { %>
+			<span><%= links[0].title %></span>
+		<% } %>
+	</h1>
 	<div class="spacer vertical xs"></div>
-	<h2 class="header__baseline">Don't settle, find super love!</h2>
+	<h2 class="header__baseline">Find super love!</h2>
 </header>

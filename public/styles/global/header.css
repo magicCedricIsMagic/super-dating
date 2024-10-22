@@ -11,8 +11,16 @@
 .header__title {
 	font-size: var(--text-xxxl);
 	color: var(--col-red);
+	transition: var(--transition);
+	&:has([href]) {
+		&:hover,
+		&:focus-visible {
+				scale: 103%;
+		}
+	}
+	
 }
 .header__baseline {
-	font-size: var(--text-lg);
+	font-size: var(--text-xl);
 	color: color-mix(in srgb, var(--col-red) 67%, var(--col-dark));
 }

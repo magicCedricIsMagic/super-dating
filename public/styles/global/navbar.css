@@ -27,6 +27,8 @@
 	a {
 		font-weight: 600;
 		font-size: var(--text-lg);
+		display: inline-block;
+		transition: var(--transition);
 		&:not([href]) {
 			color: var(--col-gray);
 		}
@@ -39,6 +41,10 @@
 			}
 			&:focus-visible {
 				outline-color: rgb(from var(--col-interactive) r g b / 20%);
+			}
+			&:hover,
+			&:focus-visible {
+				scale: 107.5%;
 			}
 		}
 	}

@@ -4,7 +4,8 @@ const CustomError = require("../utils/CustomError")
 
 const indexRouter = Router()
 
-const indexController = require("../controllers/indexController.js")
+const heroesController = require("../controllers/heroesController.js")
+const adminController = require("../controllers/adminController.js")
 
 const routes = [
 	{
@@ -27,43 +28,43 @@ const routes = [
 
 /* for (const route of routes) {
 	indexRouter.get(route.url, (req, res, next) => {
-		indexController.getView(req, res, next, { routes, route })
+		heroesController.getView(req, res, next, { routes, route })
 	})
 } */
 
 indexRouter.get("/", (req, res, next) => {
-	indexController.getHomeView(req, res, next, { routes, route: routes[0] })
+	heroesController.getHomeView(req, res, next, { routes, route: routes[0] })
 })
 
 indexRouter.get("/heroes-by-type/:id", (req, res, next) => {
-	indexController.getHeroesByTypeView(req, res, next, { routes })
+	heroesController.getHeroesByTypeView(req, res, next, { routes })
 })
 indexRouter.get("/heroes-by-interest/:id", (req, res, next) => {
-	indexController.getHeroesByInterestView(req, res, next, { routes })
+	heroesController.getHeroesByInterestView(req, res, next, { routes })
 })
 
 indexRouter.get("/new-hero", (req, res, next) => {
-	indexController.getEditHeroView(req, res, next, { routes, route: routes[1] })
+	heroesController.getEditHeroView(req, res, next, { routes, route: routes[1] })
 })
 indexRouter.get("/edit-hero/:id", (req, res, next) => {
 	let route = {...routes[1]}
 	route.title = "Edit my profile"
-	indexController.getEditHeroView(req, res, next, { routes, route })
+	heroesController.getEditHeroView(req, res, next, { routes, route })
 })
-indexRouter.post("/new-hero", indexController.saveHero)
-indexRouter.post("/edit-hero/:id", indexController.saveHero)
+indexRouter.post("/new-hero", heroesController.saveHero)
+indexRouter.post("/edit-hero/:id", heroesController.saveHero)
 
 indexRouter.get("/admin", (req, res, next) => {
-	indexController.getView(req, res, next, { routes, route: routes[2] })
+	adminController.getAdminView(req, res, next, { routes, route: routes[2] })
 })
 
 indexRouter.get("/hero/:id", (req, res, next) => {
-	indexController.getHeroView(req, res, next, { routes })
+	heroesController.getHeroView(req, res, next, { routes })
 })
 
-indexRouter.post("/delete-hero/:id", indexController.deleteHero)
+indexRouter.post("/delete-hero/:id", heroesController.deleteHero)
 
-// indexRouter.get("/delete-all", indexController.deleteAll)
+// indexRouter.get("/delete-all", heroesController.deleteAll)
 
 
 indexRouter.get("/*", (req, res, next) => {
@@ -73,6 +74,6 @@ indexRouter.get("/*", (req, res, next) => {
 	)
 })
 
-indexRouter.use((err, req, res, next) => indexController.getErrorView(err, req, res, next, { routes }))
+indexRouter.use((err, req, res, next) => heroesController.getErrorView(err, req, res, next, { routes }))
 
-module.exports = indexRouter
+module.exports = { indexRouter, routes }

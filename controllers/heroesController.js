@@ -20,7 +20,6 @@ function getErrorView(err, req, res, next, params) {
 }
 
 async function getHomeView(req, res, next, params) {
-	// const heroes = await db.getAllHeroes()
 	const heroes = await db.getRandomHeroes(6)
 	res.render(params.route.file, {
 		title: params.route.title,

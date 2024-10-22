@@ -1,0 +1,35 @@
+.admin-list__list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--sm);
+}
+
+.admin-list__item {
+	--buttons-width: 8rem;
+	display: flex;
+	gap: var(--xs);
+	padding: var(--xxs) var(--sm);
+	background-color: var(--col-light);
+	border-radius: var(--xs);
+	transition: var(--transition);
+
+	&:not(:hover) {
+		padding-inline: calc(var(--sm) + var(--buttons-width) / 2);
+		.admin-list__buttons {
+			visibility: hidden;
+			opacity: 0;
+			width: 0;
+			scale: 0;
+		}
+	}
+}
+
+.admin-list__buttons {
+	display: flex;
+	width: var(--buttons-width);
+	transition: var(--transition);
+}
+
+.admin-list__button {
+	padding: var(--xxxs);
+}

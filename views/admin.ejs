@@ -3,7 +3,7 @@
 
 	<head>
 		<%- include("includes/headContent") %>
-		<!-- <link rel="stylesheet" href="/styles/index.css"> -->
+		<link rel="stylesheet" href="/styles/admin.css">
 	</head>
 
 	<body>
@@ -11,9 +11,61 @@
 		<div class="spacer vertical lg"></div>
 		<main class="main full">
 			<h1 class="h1"><%= title %></h1>
-			<div class="spacer vertical sm"></div>
-			<h2 class="h2">Restricted area</h2>
+			<div class="spacer vertical xl"></div>
+
+			<section class="admin-list">
+				<h2 class="h2">Types</h2>
+				<div class="spacer vertical sm"></div>
+				<div class="admin-list__list">
+					<% for (const type of types) { %>
+						<article class="admin-list__item">
+							<div class="admin-list__label"><%= type.name %></div>
+							<div class="admin-list__buttons">
+								<a href="/heroes-by-type/<%= type.id %>" class="button button--inline admin-list__button admin-list__button">
+									<i class="fa-solid fa-eye"></i>
+								</a>
+								<a href="/admin/types/edit/<%= type.id %>" class="button button--inline admin-list__button admin-list__button">
+									<i class="fa-solid fa-pencil"></i>
+								</a>
+								<button onclick=<%= `openDeleteTypeModal(${type.id})` %> class="button danger button--inline admin-list__button admin-list__button--delete">
+									<i class="fa-solid fa-trash-can"></i>
+								</button>
+								<dialog id="delete-type-modal-<%= type.id %>" class="modal">
+									<h3 class="h3">Are you sure you want to delete this type?</h3>
+									<div class="spacer vertical md"></div>
+									<p>The deletion will be permanent.</p>
+									<div class="spacer vertical lg"></div>
+									<div class="flex gap-sm justify-end align-center">
+										<button class="button gray" onclick=<%= `closeDeleteTypeModal(${type.id})` %>>Cancel</button>
+										<form method="POST" action="/admin/types/delete/<%= type.id %>">
+											<button type="submit" class="button danger" onclick=<%= `closeDeleteTypeModal(${type.id})` %>>Delete</button>
+										</form>
+									</div>
+								</dialog>
+							</div>
+						</article>
+					<% } %>
+					<a href="/admin/types/new" class="button primary">Add a new type</a>
+				</div>
+			</section>
+			
 		</main>
+
+		<script>
+			function openDeleteTypeModal(typeId) {
+				const deleteTypeModal = document.querySelector(`#delete-type-modal-${typeId}`)
+				deleteTypeModal.showModal()
+			}
+			function closeDeleteTypeModal(typeId) {
+				const deleteTypeModal = document.querySelector(`#delete-type-modal-${typeId}`)
+				deleteTypeModal.classList.add("is-closing")
+				setTimeout(() => {
+					deleteTypeModal.classList.remove("is-closing")
+					deleteTypeModal.close()
+				}, 500)
+			}
+		</script>
+
 	</body>
 
 </html>

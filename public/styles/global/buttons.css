@@ -52,3 +52,16 @@
 		padding-inline: var(--sm);
 	}
 }
+
+.button--inline {
+	display: inline-flex;
+	padding: unset;
+	border: none;
+	color: var(--btn-col);
+	background-color: transparent;
+	min-height: unset;
+	&:hover {
+		color: var(--btn-col-hover);
+		background-color: color-mix(in srgb, var(--btn-col) 20%, transparent);
+	}
+}

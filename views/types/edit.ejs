@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<%- include("../includes/headContent") %>
+		<!-- <link rel="stylesheet" href="/styles/index.css"> -->
+</head>
+
+<body>
+	<%- include("../includes/header") %>
+	<div class="spacer vertical lg"></div>
+	<main class="main">
+		<h1 class="h1"><%= title %></h1>
+		<div class="spacer vertical"></div>
+
+		<form
+			class="form"
+			method="POST"
+			action="<%= type?.id 
+				? `/admin/types/edit/${type.id}` 
+				: "/admin/types/new"
+			%>"
+		>
+
+			<label class="form-field">
+				<span class="form-field__label">Name</span>
+				<input name="name" required class="form-field__input" value="<%= type?.name %>" />
+			</label>
+
+			<section class="flex wrap justify-end gap-sm">
+				<a
+					href="/admin"
+					class="button gray"
+				>
+					Cancel
+				</a>
+				<input class="button success" type="submit" value="Submit" />
+			</section>
+
+		</form>
+	</main>
+</body>
+
+</html>

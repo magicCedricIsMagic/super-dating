@@ -257,6 +257,9 @@ async function getAllSexes() {
     console.error("error", error)
   }
 }
+
+
+
 async function getAllTypes() {
   try {
     const { rows } = await pool.query(`
@@ -269,18 +272,7 @@ async function getAllTypes() {
     console.error("error", error)
   }
 }
-async function getAllInterests() {
-  try {
-    const { rows } = await pool.query(`
-      SELECT * FROM interests
-      ORDER BY name
-    `)
-    return rows
-  }
-  catch (error) {
-    console.error("error", error)
-  }
-}
+
 async function getType(typeId) {
   try {
     const { rows } = await pool.query(`
@@ -293,6 +285,59 @@ async function getType(typeId) {
     console.error("error", error)
   }
 }
+
+async function addType(type) {
+  try {
+    await pool.query(`
+      INSERT INTO types (name)
+      VALUES ($1)
+    `, [type.name])
+  }
+  catch (error) {
+    console.error("error", error)
+  }
+}
+
+async function updateType(type) {
+  try {
+    await pool.query(`
+      UPDATE types
+      SET name = $2 
+      WHERE id = $1
+    `, [type.id, type.name])
+  }
+  catch (error) {
+    console.error("error", error)
+  }
+}
+
+async function deleteType(id) {
+  try {
+    await pool.query(`
+      DELETE FROM types 
+      WHERE id = $1
+    `, [id])
+  }
+  catch (error) {
+    console.error("error", error)
+  }
+}
+
+
+
+async function getAllInterests() {
+  try {
+    const { rows } = await pool.query(`
+      SELECT * FROM interests
+      ORDER BY name
+    `)
+    return rows
+  }
+  catch (error) {
+    console.error("error", error)
+  }
+}
+
 async function getInterest(interestId) {
   try {
     const { rows } = await pool.query(`
@@ -305,6 +350,16 @@ async function getInterest(interestId) {
     console.error("error", error)
   }
 }
+
+
+
+
+
+
+
+
+
+
 
 async function emptyDatabase() {
   try {
@@ -335,8 +390,11 @@ module.exports = {
   deleteAllHeroes,
   getAllSexes,
   getAllTypes,
-  getAllInterests,
   getType,
+  addType,
+  updateType,
+  deleteType,
+  getAllInterests,
   getInterest,
   emptyDatabase,
 }

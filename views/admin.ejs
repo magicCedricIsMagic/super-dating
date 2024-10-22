@@ -13,7 +13,7 @@
 			<h1 class="h1"><%= title %></h1>
 			<div class="spacer vertical xl"></div>
 
-			<section class="admin-list">
+			<section class="admin-list admin-list--types">
 				<h2 class="h2">Types</h2>
 				<div class="spacer vertical sm"></div>
 				<div class="admin-list__list">
@@ -49,6 +49,44 @@
 				</div>
 			</section>
 			
+			<div class="spacer vertical xl"></div>
+
+			<section class="admin-list admin-list--interests">
+				<h2 class="h2">Interests</h2>
+				<div class="spacer vertical sm"></div>
+				<div class="admin-list__list">
+					<% for (const interest of interests) { %>
+						<article class="admin-list__item">
+							<div class="admin-list__label"><%= interest.name %></div>
+							<div class="admin-list__buttons">
+								<a href="/heroes-by-interest/<%= interest.id %>" class="button button--inline admin-list__button admin-list__button">
+									<i class="fa-solid fa-eye"></i>
+								</a>
+								<a href="/admin/interests/edit/<%= interest.id %>" class="button button--inline admin-list__button admin-list__button">
+									<i class="fa-solid fa-pencil"></i>
+								</a>
+								<button onclick=<%= `openDeleteInterestModal(${interest.id})` %> class="button danger button--inline admin-list__button admin-list__button--delete">
+									<i class="fa-solid fa-trash-can"></i>
+								</button>
+								<dialog id="delete-interest-modal-<%= interest.id %>" class="modal">
+									<h3 class="h3">Are you sure you want to delete this interest?</h3>
+									<div class="spacer vertical md"></div>
+									<p>The deletion will be permanent.</p>
+									<div class="spacer vertical lg"></div>
+									<div class="flex gap-sm justify-end align-center">
+										<button class="button gray" onclick=<%= `closeDeleteInterestModal(${interest.id})` %>>Cancel</button>
+										<form method="POST" action="/admin/interests/delete/<%= interest.id %>">
+											<button type="submit" class="button danger" onclick=<%= `closeDeleteInterestModal(${interest.id})` %>>Delete</button>
+										</form>
+									</div>
+								</dialog>
+							</div>
+						</article>
+					<% } %>
+					<a href="/admin/interests/new" class="button primary">Add a new interest</a>
+				</div>
+			</section>
+			
 		</main>
 
 		<script>
@@ -62,6 +100,19 @@
 				setTimeout(() => {
 					deleteTypeModal.classList.remove("is-closing")
 					deleteTypeModal.close()
+				}, 500)
+			}
+
+			function openDeleteInterestModal(interestId) {
+				const deleteInterestModal = document.querySelector(`#delete-interest-modal-${interestId}`)
+				deleteInterestModal.showModal()
+			}
+			function closeDeleteInterestModal(interestId) {
+				const deleteInterestModal = document.querySelector(`#delete-interest-modal-${interestId}`)
+				deleteInterestModal.classList.add("is-closing")
+				setTimeout(() => {
+					deleteInterestModal.classList.remove("is-closing")
+					deleteInterestModal.close()
 				}, 500)
 			}
 		</script>

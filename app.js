@@ -18,8 +18,10 @@ app.locals.displayHour = displayHour
 
 const { indexRouter } = require("./routes/indexRouter")
 const typesRouter = require("./routes/typesRouter")
+const interestsRouter = require("./routes/interestsRouter")
 
 app.use("/admin/types/", typesRouter)
+app.use("/admin/interests/", interestsRouter)
 app.use("/", indexRouter)
 
 const PORT = process.env.PORT || 3000

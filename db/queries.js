@@ -351,13 +351,42 @@ async function getInterest(interestId) {
   }
 }
 
+async function addInterest(interest) {
+  try {
+    await pool.query(`
+      INSERT INTO interests (name)
+      VALUES ($1)
+    `, [interest.name])
+  }
+  catch (error) {
+    console.error("error", error)
+  }
+}
 
+async function updateInterest(interest) {
+  try {
+    await pool.query(`
+      UPDATE interests
+      SET name = $2 
+      WHERE id = $1
+    `, [interest.id, interest.name])
+  }
+  catch (error) {
+    console.error("error", error)
+  }
+}
 
-
-
-
-
-
+async function deleteInterest(id) {
+  try {
+    await pool.query(`
+      DELETE FROM interests 
+      WHERE id = $1
+    `, [id])
+  }
+  catch (error) {
+    console.error("error", error)
+  }
+}
 
 
 
@@ -396,5 +425,8 @@ module.exports = {
   deleteType,
   getAllInterests,
   getInterest,
+  addInterest,
+  updateInterest,
+  deleteInterest,
   emptyDatabase,
 }

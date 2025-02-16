@@ -1,5 +1,5 @@
 const { body, validationResult } = require("express-validator")
-const { sanitize } = require("../utils/texts")
+const { sanitize, getPlural } = require("../utils/texts")
 const CustomError = require("../utils/CustomError")
 const db = require("../db/queries")
 
@@ -36,13 +36,14 @@ async function getHeroesByTypeView(req, res, next, params) {
 	else {
 		const heroes = await db.getHeroesByType(type.id)
 		res.render("heroes-by-tag", {
-			title: `Some ${type.name.toLowerCase()}s you may like`,
+			title: `Some ${type.name.toLowerCase()}${getPlural(type.name)} you may like`,
 			links: params.routes,
 			type,
 			heroes,
 		})
 	}
 }
+
 async function getHeroesByInterestView(req, res, next, params) {
 	const interest = await db.getInterest(req.params.id)
 	if (!interest) {

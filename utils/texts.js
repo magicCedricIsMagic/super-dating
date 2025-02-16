@@ -1,3 +1,8 @@
 const sanitize = (string) => string.replace(/(<([^>]+)>)/gi, "")
 
-module.exports = { sanitize }
+function getPlural(word) {
+	let plural = word.toLowerCase().slice(-2) === "ss" ? "es" : "s"
+	return plural
+}
+
+module.exports = { sanitize, getPlural }

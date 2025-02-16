@@ -11,39 +11,42 @@
 		<div class="spacer vertical xl"></div>
 
 		<main class="main full">
-			<h2 class="h2"><%= heroes.length %> random match<%= heroes.length > 1 ? "es" : "" %>:</h2>
-			
-			<div class="spacer vertical"></div>
-			<section class="grid sm heroes-list">
-				<% for (const hero of heroes) { %>
-					<a href="/hero/<%= hero.id %>" class="card hero-card">
-						<article>
-							<header class="flex column align-center gap-sm">
-								<div class="hero-card__photo">
-									<% if (hero.photo) { %>
-										<img src="<%= hero.photo %>" alt="<%= hero.name %>">
-									<% } else { %>
-										<i class="fas fa-mask"></i>
-									<% } %>
-								</div>
+			<% if (heroes) { %>
+				<h2 class="h2"><%= heroes.length %> random match<%= heroes.length > 1 ? "es" : "" %>:</h2>
+				<div class="spacer vertical"></div>
+				<section class="grid sm heroes-list">
+					<% for (const hero of heroes) { %>
+						<a href="/hero/<%= hero.id %>" class="card hero-card">
+							<article>
+								<header class="flex column align-center gap-sm">
+									<div class="hero-card__photo">
+										<% if (hero.photo) { %>
+											<img src="<%= hero.photo %>" alt="<%= hero.name %>">
+										<% } else { %>
+											<i class="fas fa-mask"></i>
+										<% } %>
+									</div>
 
-								<h2 class="h4">
-									<%= hero.name %>&nbsp;
-									<% if (hero.sex_id === 1) { %><i class="h6 opacity-50 fa-solid fa-mars"></i><% } %>
-									<% if (hero.sex_id === 2) { %><i class="h6 opacity-50 fa-solid fa-venus"></i><% } %>
-								</h2>
-							</header>
+									<h2 class="h4">
+										<%= hero.name %>&nbsp;
+										<% if (hero.sex_id === 1) { %><i class="h6 opacity-50 fa-solid fa-mars"></i><% } %>
+										<% if (hero.sex_id === 2) { %><i class="h6 opacity-50 fa-solid fa-venus"></i><% } %>
+									</h2>
+								</header>
 
-							<% if (hero.bio) { %>
-								<div class="spacer vertical xs"></div>
-								<p class="text-center text-truncate text-truncate--1">
-									<%= hero.bio %>
-								</p>
-							<% } %>
-						</article>
-					</a>
-				<% } %>
-			</div>
+								<% if (hero.bio) { %>
+									<div class="spacer vertical xs"></div>
+									<p class="text-center text-truncate text-truncate--1">
+										<%= hero.bio %>
+									</p>
+								<% } %>
+							</article>
+						</a>
+					<% } %>
+				</div>
+			<% } else { %>
+				<h2 class="h2 text-center">Nobody is here to save you :(</h2>
+			<% } %>
 		</main>
 
 	</body>
